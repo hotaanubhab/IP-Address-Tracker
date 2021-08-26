@@ -1,4 +1,5 @@
 import Datacontent from "./components/Datacontent.jsx";
+import Mapcontent from "./components/Mapcontent.jsx";
 import ArrowIcon from "./images/icon-arrow.svg";
 import { useState, useEffect } from "react";
 import Sawo from "sawo";
@@ -23,7 +24,6 @@ function App() {
   }, []);
 
   return (
-    <body>
     <div className="App">
        {isUserLoggedIn ? (
          <div>
@@ -43,6 +43,7 @@ function App() {
               placeholder="Search for any IP address or domain"
               className="input-box"
             />
+            
             <button type="submit" className="submit-btn">
               <img src={ArrowIcon} alt="submit" />
             </button>
@@ -55,10 +56,12 @@ function App() {
         timezone={"temp"}
         isp={"temp"}
       />
+       <Mapcontent
+        center={[51.505, -0.09]}
+      />
     </div>
     )}
   </div>
-  </body>  
   );
 }
 

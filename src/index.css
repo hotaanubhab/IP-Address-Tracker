@@ -7,19 +7,14 @@ body{
   padding: 0;
   box-sizing: border-box;
 }
-.bgimage
-{
-  background-image: url("./images/pattern-bg.png");
-  filter: blur(8px);
-  -webkit-filter: blur(8px);
-  height: 100vh;
-}
 .containerStyle {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background: rgb(95,135,242);
+  background: radial-gradient(circle, rgba(95,135,242,1) 0%, rgba(69,64,156,1) 100%);
 }
 .formContainer {
 
@@ -59,5 +54,9 @@ body{
 .submit-btn:hover {
   background-color: hsl(0, 0%, 17%);
 }
+.leaflet-container {
+  height: 70vh;
+}
 
+  
 
