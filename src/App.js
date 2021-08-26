@@ -1,4 +1,4 @@
-import Datacontent from "./components/Datacontent";
+import Datacontent from "./components/Datacontent.jsx";
 import ArrowIcon from "./images/icon-arrow.svg";
 import { useState, useEffect } from "react";
 import Sawo from "sawo";
@@ -6,8 +6,8 @@ import Sawo from "sawo";
 function App() {
   const [isUserLoggedIn, setUserLoggedIn] = useState(false);
   const [payload, setPayload] = useState({});
-  const sawo_key = process.env.REACT_APP_SAWO_KEY;
   useEffect(() => {
+    const sawo_key = process.env.REACT_APP_SAWO_KEY;
     var config = {
       containerID: "sawo-container",
       identifierType: "email",
@@ -19,13 +19,19 @@ function App() {
       },
     };
     let sawo = new Sawo(config);
-    sawo.showForm();
+    //sawo.showForm();
   }, []);
 
   return (
+    <body>
     <div className="App">
-       {!isUserLoggedIn ? (
+       {isUserLoggedIn ? (
+         <div>
+          
+          <div className="containerStyle">
           <div className="formContainer" id="sawo-container"></div>
+          </div>
+          </div>
         ) : (
       <div>
       <div className="d-flex flex-column align-items-center main-container">
@@ -44,14 +50,15 @@ function App() {
         </div>
         </div>
        <Datacontent
-        ip={sawo_key}
+        ip={"temp"}
         location={["temp","temp","temp"]}
         timezone={"temp"}
         isp={"temp"}
       />
     </div>
-    )};
-  </div>  
+    )}
+  </div>
+  </body>  
   );
 }
 
