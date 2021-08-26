@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import Datacontent from "./components/Datacontent";
+import ArrowIcon from "./images/icon-arrow.svg";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+      <div className="d-flex flex-column align-items-center main-container">
+        <div className="text-white pt-4 pb-3">IP Address Tracker</div>
+        <div className="form-container">
+          <form>
+            <input
+              type="text"
+              placeholder="Search for any IP address or domain"
+              className="input-box"
+            />
+            <button type="submit" className="submit-btn">
+              <img src={ArrowIcon} alt="submit" />
+            </button>
+          </form>
+        </div>
+        </div>
+       <Datacontent
+        ip={"temp"}
+        location={["temp","temp","temp"]}
+        timezone={"temp"}
+        isp={"temp"}
+      />
     </div>
   );
 }
