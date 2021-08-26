@@ -3,10 +3,22 @@
 body{
   font-family: 'Rubik', sans-serif;
   font-size: 18px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+}
+.main-container {
+  background-image: url("./images/pattern-bg.png");
+  background-repeat: no-repeat;
+  height: 30vh;
+  background-position: center;
+  background-size: cover;
+  z-index: 0;
 }
 .input-box {
   border-radius: 16px 1px 1px 16px;
-  padding: 16px;
+  padding: 9.5px 16px 16px 16px;
   width: 60vh;
   border: none;
 }
