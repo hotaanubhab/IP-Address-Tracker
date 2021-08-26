@@ -20,12 +20,12 @@ function App() {
       },
     };
     let sawo = new Sawo(config);
-    //sawo.showForm();
+    sawo.showForm();
   }, []);
 
   return (
     <div className="App">
-       {isUserLoggedIn ? (
+       {!isUserLoggedIn ? (
          <div>
           
           <div className="containerStyle">
@@ -43,7 +43,7 @@ function App() {
               placeholder="Search for any IP address or domain"
               className="input-box"
             />
-            
+
             <button type="submit" className="submit-btn">
               <img src={ArrowIcon} alt="submit" />
             </button>

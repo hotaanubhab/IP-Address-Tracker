@@ -18,8 +18,8 @@ body{
 }
 .formContainer {
 
-  padding: 1rem;
-  background-color: #f3f3f3;
+  padding: 0.5rem;
+  background-color: rgba(85,138,221,255);
   height: 300px;
   width: 400px;
   border-radius: 10px;
