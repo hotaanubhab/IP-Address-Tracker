@@ -7,7 +7,20 @@ import Sawo from "sawo";
 function App() {
   const [isUserLoggedIn, setUserLoggedIn] = useState(false);
   const [payload, setPayload] = useState({});
+  const [inputIp, setIp] = useState("");
+  const [isError, setError] = useState(false);
+  const [data, setData] = useState({
+    ip: "",
+    city: "",
+    region: "",
+    lat: 0.0,
+    lng: 0.0,
+    postalCode: "",
+    timezone: "",
+    isp: "",
+  });
   useEffect(() => {
+    requestGeoData();
     const sawo_key = process.env.REACT_APP_SAWO_KEY;
     var config = {
       containerID: "sawo-container",
@@ -23,6 +36,46 @@ function App() {
     sawo.showForm();
   }, []);
 
+  const requestGeoData = async(inputIp="")=>{
+    const ipify_key = process.env.REACT_APP_IPIFY_KEY;
+    await fetch(
+      `https://geo.ipify.org/api/v1?apiKey=${ipify_key}&ipAddress=${inputIp}&domain=${inputIp}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setData({
+          ip: data.ip,
+          city: data.location.city,
+          region: data.location.region,
+          lat: parseFloat(data.location.lat),
+          lng: parseFloat(data.location.lng),
+          postalCode: data.location.postalCode,
+          timezone: data.location.timezone,
+          isp: data.isp,
+        });
+      })
+      .catch((err) => {
+        setError(true);
+        console.log(err);
+      });
+  };
+  const handleChange = (e) => {
+    setIp(e.target.value);
+    setError(false);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const ipAddressRegex = /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/;
+    const domainRegex = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([-.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/;
+
+    if (ipAddressRegex.test(inputIp) || domainRegex.test(inputIp)) {
+      requestGeoData(inputIp);
+    } else {
+      setError(true);
+    }
+  };
+  
+
   return (
     <div className="App">
        {!isUserLoggedIn ? (
@@ -37,11 +90,12 @@ function App() {
       <div className="d-flex flex-column align-items-center main-container">
         <div className="text-white pt-4 pb-3 heading">IP Address Tracker</div>
         <div className="form-container">
-          <form>
+          <form onSubmit={handleSubmit}>
             <input
               type="text"
               placeholder="Search for any IP address or domain"
               className="input-box"
+              onChange = {handleChange}
             />
 
             <button type="submit" className="submit-btn">
@@ -51,13 +105,13 @@ function App() {
         </div>
         </div>
        <Datacontent
-        ip={"temp"}
-        location={["temp","temp","temp"]}
-        timezone={"temp"}
-        isp={"temp"}
+        ip={data.ip}
+        location={[data.city,data.region,data.postalCode]}
+        timezone={"UTC"+data.timezone}
+        isp={data.isp}
       />
        <Mapcontent
-        center={[51.505, -0.09]}
+        center={(data.lat && data.lng)?[data.lat,data.lng]:[20.5937, 78.9629]}
       />
     </div>
     )}

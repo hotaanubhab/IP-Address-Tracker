@@ -23,7 +23,7 @@ const Mapcontent = ({ center }) => {
           scrollWheelZoom={true}
         >
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-          <Marker position={center} icon={customMarker}>
+          <Marker position={center} icon={customMarker} >
             <Popup>
               Latitide: {center[0]} <br /> Longitude: {center[1]}
             </Popup>

@@ -1,7 +1,7 @@
 const Datacontent = ({ ip, location, timezone, isp }) => {
     return ( 
         <div className="d-flex display-container position-absolute">
-        <div className="d-flex flex-column py-2 px-3">
+        <div className="d-flex flex-column py-2 px-3 datafield">
           <span className="label">IP Address</span>
           <span className="datatext">{ip}</span>
         </div>
