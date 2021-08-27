@@ -5,10 +5,10 @@ import { useState, useEffect } from "react";
 import Sawo from "sawo";
 
 function App() {
-  const [isUserLoggedIn, setUserLoggedIn] = useState(false);
-  const [payload, setPayload] = useState({});
-  const [inputIp, setIp] = useState("");
-  const [isError, setError] = useState(false);
+  const [isUserLoggedIn, setUserLoggedIn] = useState(false); //sawo login state
+  const [payload, setPayload] = useState({}); // payload
+  const [inputIp, setIp] = useState(""); //Search input for ip
+  const [isError, setError] = useState(false); //error boolean
   const [data, setData] = useState({
     ip: "",
     city: "",
@@ -18,10 +18,12 @@ function App() {
     postalCode: "",
     timezone: "",
     isp: "",
-  });
+  }); //dynamic geodata
+  
+  //Effect hook
   useEffect(() => {
     requestGeoData();
-    const sawo_key = process.env.REACT_APP_SAWO_KEY;
+    const sawo_key = process.env.REACT_APP_SAWO_KEY; //SAWO API KEY
     var config = {
       containerID: "sawo-container",
       identifierType: "email",
@@ -36,6 +38,8 @@ function App() {
     sawo.showForm();
   }, []);
 
+
+  //Funtion to request API endpoint , "" (empty) IpAddress returns data for current Ip where request is made from.
   const requestGeoData = async(inputIp="")=>{
     const ipify_key = process.env.REACT_APP_IPIFY_KEY;
     await fetch(
@@ -59,12 +63,15 @@ function App() {
         console.log(err);
       });
   };
+  //State change for Ip when input value is changed
   const handleChange = (e) => {
     setIp(e.target.value);
     setError(false);
   };
+  //Submit function for IP
   const handleSubmit = (e) => {
     e.preventDefault();
+    //Regular expressions for validation
     const ipAddressRegex = /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/;
     const domainRegex = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([-.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/;
 
