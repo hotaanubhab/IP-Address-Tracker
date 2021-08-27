@@ -35,7 +35,7 @@ function App() {
         ) : (
       <div>
       <div className="d-flex flex-column align-items-center main-container">
-        <div className="text-white pt-4 pb-3">IP Address Tracker</div>
+        <div className="text-white pt-4 pb-3 heading">IP Address Tracker</div>
         <div className="form-container">
           <form>
             <input
