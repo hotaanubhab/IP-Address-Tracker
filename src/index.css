@@ -21,7 +21,7 @@ body{
   padding: 0.5rem;
   background-color: rgba(85,138,221,255);
   height: 300px;
-  width: 400px;
+  width: 280px;
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -98,6 +98,54 @@ body{
 .leaflet-container {
   z-index: 0;
   height: 66vh;
+}
+
+
+@media screen and (min-width: 679px) and (max-width: 1000px) {
+  .display-container {
+    width: 90%;
+    left: 5%;
+  }
+}
+
+@media screen and (max-width: 678px) {
+  .display-container {
+    flex-direction: column;
+    text-align: center;
+    padding: 3vh;
+    left: 15%;
+    top: 15vh;
+  }
+  .display-container > * {
+    padding: 1vh 0vh;
+  }
+  .bar {
+    display: none;
+  }
+  .input-box {
+    width: 21vh;
+  }
+  .submit-btn {
+    width: 5vh;
+  }
+}
+
+@media screen and (max-height: 375px) {
+  .display-container {
+    top: 15vh;
+  }
+  .main-container {
+    height: 34vh;
+  }
+  .leaflet-container {
+    height: 66vh;
+  }
+  .input-box {
+    width: 25vh;
+  }
+  .submit-btn {
+    width: 5vh;
+  }
 }
 
   
