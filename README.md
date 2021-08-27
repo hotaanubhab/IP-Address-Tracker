@@ -1,6 +1,7 @@
 ## Table of contents
 
 - [Overview](#overview)
+  - [Installation](#installation)
   - [The challenge](#the-challenge)
   - [Screenshot](#screenshot)
   - [Links](#links)
@@ -9,7 +10,29 @@
 
 ## Overview
 
--The following is a React App built using SAWO Auth API,Geo-Ipify API & React-Leaflet JS that allows the user to find the geolocation data of his current IP Address as well search the same information for any other IP or domain and display them on a map. The following React App is also fully responsive with Boostrap.
+- The following is a React App built using SAWO Auth API,Geo-Ipify API & React-Leaflet JS that allows the user to find the geolocation data of his current IP Address as well search the same information for any other IP or domain and display them on a map. The following React App is also fully responsive with Boostrap.
+
+## Installation
+- clone the repositiory
+```sh
+$ git clone https://github.com/hotaanubhab/IP-Address-Tracker.git
+```
+- Move the directory
+```sh
+$ cd ip-address-tracker
+```
+- Install Dependencies 
+```sh
+$ npm install
+```
+- Make a .env file with the following (REACT_APP_SAWO_KEY , REACT_APP_IPIFY_KEY)
+```sh
+$ Get them from https://sawolabs.com/ , https://www.ipify.org/ .
+```
+- Run the react app
+```sh
+$ npm run start
+```
 
 ### The challenge
 
